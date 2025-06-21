@@ -6,11 +6,12 @@ const doublePlayer = document.querySelector(".double-player");
 const nameInputs = document.querySelector(".name-inputs");
 const gameSection = document.querySelector(".game-section");
 const closeBtn = document.querySelector(".close-btn");
+const roleDisplay = document.querySelector(".player-roles");
 
 let player1Name = "";
 let player2Name = "";
-let player1Mark = "";
-let player2Mark = "";
+let player1Mark = "X";
+let player2Mark = "O";
 
 closeBtn.addEventListener("click", () => {
   popup_container.style.display = "none";
@@ -21,19 +22,26 @@ startGame.addEventListener("click", () => {
   modeSection.style.display = "flex";
 });
 
+const capitalize = (name) => {
+  return name.charAt(0).toUpperCase() + name.slice(1);
+};
+
 singlePlayer.addEventListener("click", () => {
   nameInputs.innerHTML = `
       <input type="text" placeholder="Enter Player Name" />
       <button class="start-match-btn">Start Match</button
       `;
+
   const startMatch = document.querySelector(".start-match-btn");
   startMatch.addEventListener("click", () => {
     const nameInput = document.querySelector(".name-inputs input");
     player1Name = nameInput.value.trim() || "Player";
     player2Name = "Computer";
 
-    player1Mark = player1Name.charAt(0).toUpperCase();
-    player2Mark = "C";
+    roleDisplay.innerHTML = `
+      <p>${capitalize(player1Name)} is playing as X</p>
+      <p>${capitalize(player2Name)} is playing as O</p>
+    `;
 
     modeSection.style.display = "none";
     gameSection.style.display = "flex";
@@ -50,11 +58,13 @@ doublePlayer.addEventListener("click", () => {
   const startMatch = document.querySelector(".start-match-btn");
   startMatch.addEventListener("click", () => {
     const inputs = document.querySelectorAll(".name-inputs input");
-    player1Name = inputs[0].value.trim() || "Player 1";
-    player2Name = inputs[1].value.trim() || "Player 2";
+    player1Name = inputs[0].value.trim() || "Player X";
+    player2Name = inputs[1].value.trim() || "Player O";
 
-    player1Mark = player1Name.charAt(0).toUpperCase();
-    player2Mark = player2Name.charAt(0).toUpperCase();
+    roleDisplay.innerHTML = `
+      <p>${capitalize(player1Name)} is playing as X</p>
+      <p>${capitalize(player2Name)} is playing as O</p>
+    `;
 
     modeSection.style.display = "none";
     gameSection.style.display = "flex";
@@ -97,10 +107,9 @@ boxes.forEach((box) => {
     box.disabled = true;
     count++;
 
-    let isWinner = checkWinner();
+    const isWinner = checkWinner();
 
     if (count === 9 && !isWinner) {
-      console.log("draw");
       gameDraw();
       return;
     }
@@ -133,12 +142,11 @@ const showWinner = (winner) => {
   const winnerName = winner === player1Mark ? player1Name : player2Name;
   const displayName = winnerName.charAt(0).toUpperCase() + winnerName.slice(1);
   msg.innerHTML = `
-  <div class = "winner-msg">
+    <div class = "winner-msg">
       <p class = "gold-text">Congratulations,</p>
       <p class = "winner-name">${displayName} is the Winner!</p>
     </div>
-    `;
-  console.log("Winner is " + winner);
+  `;
   popup_container.style.display = "flex";
   disableBoxes();
 };
@@ -164,12 +172,11 @@ newGame.addEventListener("click", () => {
   modeSection.style.display = "flex";
   gameSection.style.display = "none";
   nameInputs.innerHTML = "";
+  roleDisplay.innerHTML = "";
   enableBoxes();
 
   player1Name = "";
   player2Name = "";
-  player1Mark = "";
-  player2Mark = "";
 
   turnO = true;
   count = 0;
