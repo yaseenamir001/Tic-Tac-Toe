@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <title>Tic-Tac-Toe Game</title>
+  </head>
+  <body>
+    <section class="entry-section">
+      <div class="entry-box">
+        <h1 class="heading">Welcome to Tic-Tac-Toe!</h1>
+        <button class="btn-cmn start-game-btn">Start Game</button>
+      </div>
+    </section>
+
+    <section class="mode-section">
+      <div class="entry-box">
+        <h2 class="heading play-head">Let's play Tic-Tac-Toe!</h2>
+        <h2>Select Game Mode:</h2>
+        <button class="btn-cmn player-btn single-player">Single Player</button>
+        <button class="btn-cmn player-btn double-player">Double Player</button>
+
+        <div class="name-inputs"></div>
+      </div>
+    </section>
+
+    <section class="game-section">
+      <h1 class="heading">Tic-Tac-Toe Game</h1>
+      <div class="container">
+        <div class="game">
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+        </div>
+      </div>
+      <button id="reset-btn">Reset</button>
+    </section>
+
+    <div class="popup-container">
+      <div class="popup">
+        <div class="close-btn">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </div>
+        <p id="msg"></p>
+        <div class="buttons">
+          <button class="btn-cmn play-again-btn">Play Again</button>
+          <button class="btn-cmn new-game-btn">New Game</button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
